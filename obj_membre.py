@@ -16,15 +16,14 @@ class Membre(Couleur):
     def __str__(self):
         return f"{Membre.BLEU}{self.id}.\t: {Membre.NO_COLOR}{self.prenom} {self.nom} {Membre.MAGENTA}(né(e) le {self.date_naissance}){Membre.NO_COLOR}"
 
-    def lister_emprunts(self):
-        if not self.livres_empruntes:
-            print(f"\t{Membre.ROUGE}----> {Membre.NO_COLOR}{self.prenom} {self.nom} n'a aucun livre emprunté.")
-        else:
-            print(
-                f"\t{Membre.ROUGE}----> {Membre.VERT}{self.prenom} {self.nom}{Membre.NO_COLOR} a emprunté les livres suivants :")
-            for livre in self.livres_empruntes:
-                print(
-                    f"\t\t- {livre.id}. {Membre.MAGENTA}{livre.titre}{Membre.NO_COLOR} de {livre.auteur.prenom} {livre.auteur.nom}")
+    def emprunter_livre(self, livre):
+        """Le membre emprunte un livre s'il est disponible."""
+        if livre.disponible :
+            livre.disponible = False
+            self.livres_empruntes.append(livre)
+            print(f"\t{Membre.ROUGE}----> {Membre.VERT}{self.prenom} {self.nom}{Membre.NO_COLOR} a emprunté '{Membre.MAGENTA}{livre.titre}{Membre.NO_COLOR}'.")
+        else :
+            print(f"\t{Membre.ROUGE}----> {Membre.NO_COLOR}Le livre '{Membre.MAGENTA}{livre.titre}{Membre.NO_COLOR}' est {Membre.ROUGE}déjà emprunté{Membre.NO_COLOR}.")
 
     def restituer_livre(self, livre):
         if livre in self.livres_empruntes:
@@ -46,8 +45,8 @@ if __name__ == "__main__":
     livre_1 = Livre("Les Piliers de la Terre", follett, "9782130428114", "1989")
     livre_2 = Livre("Une Colonne de Feu", follett, "9782221157695", "2017")
 
-    albert.livres_empruntes.append(livre_1)
-    albert.livres_empruntes.append(livre_2)
+    albert.emprunter_livre.append(livre_1)
+    albert.emprunter_livre.append(livre_2)
 
     print("\n*** 1er affichage des livres empruntés...")
     albert.lister_emprunts()
