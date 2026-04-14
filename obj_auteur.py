@@ -18,9 +18,10 @@ class Auteur(Couleur):
 
 
 print("Création de 3 instances de Auteur et affichage...")
-follett = Auteur("FOLLETT", "Ken", "Pays de Galles", "05/06/1949")
-verne = Auteur("VERNE","Jules","France", "08/02/1828")
-bridou = Auteur("BRIDOU", "Justin", None, None)
+if __name__ == "__main__":
+    follett = Auteur("FOLLETT", "Ken", "Pays de Galles", "05/06/1949")
+    verne = Auteur("VERNE", "Jules", "France", "08/02/1828")
+    bridou = Auteur("BRIDOU", "Justin", None, None)
 print(follett)
 print(verne)
 print(bridou)
