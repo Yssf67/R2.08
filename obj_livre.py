@@ -13,19 +13,22 @@ class Livre(Couleur):
         self.annee_publication = annee_publication if annee_publication else "inconnue"
         self.disponible = True
 
-
+    def __str__(self):
+        return (f"{Livre.BLEU}{self.id}{Livre.NO_COLOR}.\t: "
+                f"'{self.titre}' de {self.auteur.prenom} {self.auteur.nom} "
+                f"{Livre.MAGENTA}(ISBN: {self.isbn}, publié en {self.annee_publication}){Livre.NO_COLOR} - "
+                f"{Livre.VERT if self.disponible else Livre.ROUGE}"
+                f"{'Dispo' if self.disponible else 'NON Dispo'}{Livre.NO_COLOR}")
 
 
 if __name__ == "__main__":
+    print("Création de 3 instances de Livre et affichage...")
     follett = Auteur("FOLLETT", "Ken", "Pays de Galles", "05/06/1949")
     verne = Auteur("VERNE","Jules","France", "08/02/1828")
-
-print("Création de 3 instances de Livre et affichage...")
-
-livre_1 = Livre("Les Piliers de la Terre", follett, "9782130428114", "1989")
-livre_2 = Livre("Une Colonne de Feu", follett, "9782221157695", "2017")
-livre_2.disponible = False
-livre_3 = Livre("Vingt Mille Lieues sous les mers", verne, "9782070364234", "1870")
-print(livre_1)
-print(livre_2)
-print(livre_3)
+    livre_1 = Livre("Les Piliers de la Terre", follett, "9782130428114", "1989")
+    livre_2 = Livre("Une Colonne de Feu", follett, "9782221157695", "2017")
+    livre_2.disponible = False
+    livre_3 = Livre("Vingt Mille Lieues sous les mers", verne, "9782070364234", "1870")
+    print(livre_1)
+    print(livre_2)
+    print(livre_3)
